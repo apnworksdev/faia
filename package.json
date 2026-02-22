@@ -1,6 +1,6 @@
 {
   "name": "faia",
-  "description": "Minimal Astro site with Sanity Studio",
+  "description": "Forensic Architecture Initiative Athens",
   "scripts": {
     "dev": "concurrently \"npm run dev --workspace=astro-app\" \"npm run dev --workspace=studio\""
   },

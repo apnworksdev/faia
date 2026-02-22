@@ -1,14 +1,64 @@
 ---
-import Card from "../components/Card.astro";
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
-import { getPosts } from "../utils/sanity";
+export const prerender = false;
 
-const posts = await getPosts();
+import { PortableText } from "astro-portabletext";
+import Layout from "../layouts/Layout.astro";
+import { getLanding } from "../utils/sanity";
+import "../styles/landing.css";
+
+const language = Astro.url.searchParams.get("lang") || "en";
+const landing = await getLanding(language);
 ---
 
-<Layout title="Welcome to Astro.">
-  <section>
-    {posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
+<Layout title="Faiā" language={language}>
+  <section class="landing">
+    {landing ? (
+      <div class="landing-container">
+        {landing.headline && (
+          <p class="landing-headline">{landing.headline}</p>
+        )}
+        {landing.mission && landing.mission.length > 0 && (
+          <div class="landing-section">
+            <h2 class="landing-section-title">Mission</h2>
+            <div class="landing-content">
+              <PortableText value={landing.mission} />
+            </div>
+          </div>
+        )}
+        {landing.methods && landing.methods.length > 0 && (
+          <div class="landing-section">
+            <h2 class="landing-section-title">Methods</h2>
+            <div class="landing-content">
+              <PortableText value={landing.methods} />
+            </div>
+          </div>
+        )}
+        {landing.contact && landing.contact.length > 0 && (
+          <div class="landing-section">
+            <h2 class="landing-section-title">Contact</h2>
+            <nav class="landing-content landing-links">
+              {landing.contact.map((link) => (
+                <a
+                  class="landing-link"
+                  href={link.url}
+                  target={link.target || "_self"}
+                  rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+                >
+                  {link.title || link.url}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
+      </div>
+    ) : (
+      <p class="landing-empty">No landing content yet. Add content in Sanity Studio.</p>
+    )}
+
+    <div class="landing-section landing-coming-soon-section">
+      <div class="landing-content">
+        <p class="landing-coming-soon">Complete website coming soon.</p>
+      </div>
+    </div>
   </section>
 </Layout>

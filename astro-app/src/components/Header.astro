@@ -1,0 +1,36 @@
+---
+import Logo from './Logo.astro';
+
+interface Props {
+  language?: string;
+  pathname?: string;
+}
+
+const { language = 'en', pathname = '/' } = Astro.props;
+const languages = [
+  { id: 'en', label: 'En' },
+  { id: 'el', label: 'Gr' },
+];
+---
+
+<header class="header">
+  <a class="header-logo" href="/">
+    <Logo />
+  </a>
+
+  <nav class="header-langs" aria-label="Language">
+    {languages.map((lang) => (
+      <a
+        class={`header-lang-link${language === lang.id ? ' header-lang-link-active' : ''}`}
+        href={lang.id === 'en' ? (pathname || '/') : `${pathname || '/'}?lang=${lang.id}`}
+      >
+        {lang.label}
+      </a>
+    ))}
+  </nav>
+
+  <p class="header-description">
+    Forensic Architecture<br>
+    Initiative Athens
+  </p>
+</header>

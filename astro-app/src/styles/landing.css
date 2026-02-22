@@ -1,0 +1,64 @@
+main {
+  padding: 480px 180px 680px 240px;
+  padding: 480px 8vw 320px 12vw;
+}
+
+.landing-headline {
+  font-size: 50px;
+  line-height: .95;
+  margin-bottom: 240px;
+}
+
+.landing-section {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin-top: 140px;
+}
+
+.landing-section-title {
+  color: var(--color-gray);
+}
+
+.landing-content {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.landing-content p:not(:last-child) {
+  margin-bottom: 28px;
+}
+
+.landing-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-coming-soon-section .landing-content {
+  grid-column: 2;
+}
+
+@media (max-width: 820px) {
+  main {
+    padding: 350px 24px 150px 10px;
+  }
+
+  .landing-headline {
+    font-size: 30px;
+    margin-bottom: 70px;
+  }
+
+  .landing-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 60px;
+  }
+
+  .landing-section-title {
+    font-size: 14px;
+  }
+
+  .landing-content {
+    font-size: 16px;
+  }
+}

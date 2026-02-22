@@ -1,0 +1,49 @@
+---
+const now = new Date();
+const formatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Europe/Athens',
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+  timeZoneName: 'shortOffset',
+});
+const parts = formatter.formatToParts(now);
+const get = (type: string) => parts.find((p) => p.type === type)?.value ?? '';
+const tz = (get('timeZoneName') || 'GMT+2').replace('GMT+', 'GMT +').replace('GMT-', 'GMT -');
+const formattedDateTime = `${get('month')} ${get('day')} ${get('year')} ${get('hour')}:${get('minute')} ${tz}`;
+---
+<footer class="footer">
+  <p class="footer-element copyright">© All rights reserved.</p>
+  <p class="footer-element date-time" data-datetime>{formattedDateTime}</p>
+</footer>
+
+<script>
+  // @ts-nocheck
+  function formatDateTime(date) {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Europe/Athens',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+      timeZoneName: 'shortOffset',
+    });
+    const parts = formatter.formatToParts(date);
+    const get = (type) => parts.find((p) => p.type === type)?.value ?? '';
+    const tz = (get('timeZoneName') || 'GMT+2').replace('GMT+', 'GMT +').replace('GMT-', 'GMT -');
+    return `${get('month')} ${get('day')} ${get('year')} ${get('hour')}:${get('minute')} ${tz}`;
+  }
+
+  function updateDateTime() {
+    const el = document.querySelector('[data-datetime]');
+    if (el) el.textContent = formatDateTime(new Date());
+  }
+
+  updateDateTime();
+  setInterval(updateDateTime, 30000); // refresh every minute
+</script>
