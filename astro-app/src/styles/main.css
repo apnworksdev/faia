@@ -8,25 +8,30 @@ body {
   font-weight: 700;
 }
 
-body::before,
-body::after {
+.container {
+  display: contents;
+}
+
+header::before,
+footer::after {
   content: '';
   position: fixed;
   left: 0;
   width: 100%;
   height: 15%;
+  background: #000;
   background: linear-gradient(
     to bottom,
     #000000,
     #000000 18%,
     #00000000 100%
   );
-  z-index: 10;
+  z-index: -1;
   pointer-events: none;
 }
 
-body::before {
-  top: 0;
+header::before {
+  top: 0px;
   height: 30%;
   background: linear-gradient(
     to bottom,
@@ -36,8 +41,8 @@ body::before {
   );
 }
 
-body::after {
-  bottom: 0;
+footer::after {
+  bottom: 20px;
   transform: rotate(180deg);
 }
 

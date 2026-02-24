@@ -9,6 +9,8 @@ header {
   align-items: end;
   padding: 20px;
   column-gap: 7px;
+  background: #000;
+  width: 100vw;
 }
 
 .header-logo {
@@ -40,6 +42,7 @@ footer {
   padding: 20px 20px 17px;
   display: flex;
   justify-content: space-between;
+  background: #000;
 }
 
 @media (max-width: 820px) {

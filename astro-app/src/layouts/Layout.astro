@@ -33,7 +33,7 @@ const { pathname } = Astro.url;
     />
     <link
       rel="preload"
-      href="/fonts/HelveticaNeueLTPro-Md.woff2"
+      href="/fonts/HelveticaNeue-Medium.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -42,6 +42,8 @@ const { pathname } = Astro.url;
       name="generator"
       content={Astro.generator}
     />
+
+    <meta name="theme-color" content="cornflowerblue" />
 
     <title>{title}</title>
     <ViewTransitions />
@@ -60,7 +62,7 @@ const { pathname } = Astro.url;
 <style is:global>
   @font-face {
     font-family: 'HelveticaNeueLTPro';
-    src: url('/fonts/HelveticaNeueLTPro-Lt.woff2') format('woff2');
+    src: url('/fonts/HelveticaNeue-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -68,7 +70,7 @@ const { pathname } = Astro.url;
 
   @font-face {
     font-family: 'HelveticaNeueLTPro';
-    src: url('/fonts/HelveticaNeueLTPro-Md.woff2') format('woff2');
+    src: url('/fonts/HelveticaNeue-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -76,7 +78,7 @@ const { pathname } = Astro.url;
 
   @font-face {
     font-family: 'HelveticaNeueLTPro';
-    src: url('/fonts/HelveticaNeueLTPro-Bd.woff2') format('woff2');
+    src: url('/fonts/HelveticaNeue-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
