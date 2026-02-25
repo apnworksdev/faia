@@ -42,7 +42,7 @@ header::before {
 }
 
 footer::after {
-  bottom: 0;
+  bottom: -2px;
   transform: rotate(180deg);
 }
 
