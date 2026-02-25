@@ -2,6 +2,7 @@ import { sanityClient } from "sanity:client";
 import type { PortableTextBlock } from "@portabletext/types";
 import type { ImageAsset, Slug } from "@sanity/types";
 import groq from "groq";
+import { urlFor } from "./image";
 
 export async function getPosts(): Promise<Post[]> {
   return await sanityClient.fetch(
@@ -42,6 +43,26 @@ export interface Landing {
   mission?: PortableTextBlock[];
   methods?: PortableTextBlock[];
   contact?: LandingLink[];
+}
+
+export interface SiteSettings {
+  _type: "siteSettings";
+  favicon?: ImageAsset;
+}
+
+const SITE_SETTINGS_QUERY = groq`*[_type == "siteSettings"][0] {
+  _type,
+  favicon
+}`;
+
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  return await sanityClient.fetch(SITE_SETTINGS_QUERY);
+}
+
+/** Returns the favicon URL from Settings, or null if not set. */
+export function getFaviconUrl(settings: SiteSettings | null): string | null {
+  if (!settings?.favicon) return null;
+  return urlFor(settings.favicon).url();
 }
 
 const LANDING_QUERY = groq`coalesce(

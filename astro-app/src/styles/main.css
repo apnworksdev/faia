@@ -42,7 +42,7 @@ header::before {
 }
 
 footer::after {
-  bottom: 20px;
+  bottom: 0;
   transform: rotate(180deg);
 }
 
@@ -69,5 +69,9 @@ main a:hover {
 
   body::before {
     height: 20%;
+  }
+
+  footer::after {
+    bottom: 20px;
   }
 }

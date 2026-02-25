@@ -3,6 +3,7 @@
 import { ViewTransitions } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getSiteSettings, getFaviconUrl } from '../utils/sanity';
 import '../styles/variables.css';
 import '../styles/globals.css';
 import '../styles/main.css';
@@ -16,6 +17,10 @@ interface Props {
 
 const { title, language = 'en' } = Astro.props;
 const { pathname } = Astro.url;
+
+const siteSettings = await getSiteSettings();
+const faviconHref = getFaviconUrl(siteSettings) ?? '/favicon.svg';
+const isFaviconSvg = faviconHref === '/favicon.svg';
 ---
 
 <!DOCTYPE html>
@@ -25,8 +30,8 @@ const { pathname } = Astro.url;
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link
       rel="icon"
-      type="image/svg+xml"
-      href="/favicon.svg"
+      type={isFaviconSvg ? 'image/svg+xml' : 'image/png'}
+      href={faviconHref}
     />
     <link
       rel="preload"
