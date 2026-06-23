@@ -1,0 +1,29 @@
+---
+import { PortableText } from "astro-portabletext";
+import type { PortableTextBlock } from "@portabletext/types";
+import type { SomePortableTextComponents } from "astro-portabletext/types";
+import VimeoEmbed from "./VimeoEmbed.astro";
+import ExternalLink from "./ExternalLink.astro";
+
+interface Props {
+  value: PortableTextBlock[];
+  openLinksInNewTab?: boolean;
+}
+
+const { value, openLinksInNewTab = false } = Astro.props;
+
+const components: SomePortableTextComponents = {
+  type: {
+    vimeo: VimeoEmbed,
+  },
+  ...(openLinksInNewTab
+    ? {
+        mark: {
+          link: ExternalLink,
+        },
+      }
+    : {}),
+};
+---
+
+<PortableText value={value} components={components} />

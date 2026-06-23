@@ -40,8 +40,12 @@ export interface LandingLink {
 export interface Landing {
   _type: "landing";
   headline?: string;
+  missionTitle?: string;
   mission?: PortableTextBlock[];
+  methodsTitle?: string;
   methods?: PortableTextBlock[];
+  extraTitle?: string;
+  extra?: PortableTextBlock[];
   contact?: LandingLink[];
 }
 
@@ -71,8 +75,12 @@ const LANDING_QUERY = groq`coalesce(
 ) {
   _type,
   headline,
+  missionTitle,
   mission,
+  methodsTitle,
   methods,
+  extraTitle,
+  extra,
   contact
 }`;
 

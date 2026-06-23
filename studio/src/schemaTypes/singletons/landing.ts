@@ -23,13 +23,33 @@ export default defineType({
       rows: 4,
     }),
     defineField({
+      name: 'missionTitle',
+      title: 'Mission (Title)',
+      type: 'string',
+    }),
+    defineField({
       name: 'mission',
       title: 'Mission',
       type: 'blockContent',
     }),
     defineField({
+      name: 'methodsTitle',
+      title: 'Methods (Title)',
+      type: 'string',
+    }),
+    defineField({
       name: 'methods',
       title: 'Methods',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'extraTitle',
+      title: 'Extra (Title)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'extra',
+      title: 'Extra',
       type: 'blockContent',
     }),
     defineField({

@@ -1,0 +1,26 @@
+---
+import type { Props as PortableTextNodeProps } from "astro-portabletext/types";
+import { getVimeoEmbedUrl, getVimeoId } from "../../utils/vimeo";
+
+type Props = PortableTextNodeProps<{
+  _type: "vimeo";
+  url?: string;
+  title?: string;
+}>;
+
+const { node } = Astro.props as Props;
+const videoId = getVimeoId(node.url);
+const embedUrl = videoId ? getVimeoEmbedUrl(videoId) : null;
+---
+
+{embedUrl && (
+  <div class="vimeo-embed">
+    <iframe
+      src={embedUrl}
+      title={node.title || "Vimeo video"}
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      loading="lazy"
+    />
+  </div>
+)}

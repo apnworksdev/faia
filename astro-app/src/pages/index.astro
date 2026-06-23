@@ -1,7 +1,7 @@
 ---
 export const prerender = false;
 
-import { PortableText } from "astro-portabletext";
+import PortableTextContent from "../components/portableText/PortableTextContent.astro";
 import Layout from "../layouts/Layout.astro";
 import { getLanding } from "../utils/sanity";
 import "../styles/landing.css";
@@ -19,17 +19,25 @@ const landing = await getLanding(language);
         )}
         {landing.mission && landing.mission.length > 0 && (
           <div class="landing-section">
-            <h2 class="landing-section-title">Mission</h2>
+            <h2 class="landing-section-title">{landing.missionTitle || "Mission"}</h2>
             <div class="landing-content">
-              <PortableText value={landing.mission} />
+              <PortableTextContent value={landing.mission} openLinksInNewTab />
             </div>
           </div>
         )}
         {landing.methods && landing.methods.length > 0 && (
           <div class="landing-section">
-            <h2 class="landing-section-title">Methods</h2>
+            <h2 class="landing-section-title">{landing.methodsTitle || "Methods"}</h2>
             <div class="landing-content">
-              <PortableText value={landing.methods} />
+              <PortableTextContent value={landing.methods} openLinksInNewTab />
+            </div>
+          </div>
+        )}
+        {landing.extra && landing.extra.length > 0 && (
+          <div class="landing-section">
+            <h2 class="landing-section-title">{landing.extraTitle || "Extra"}</h2>
+            <div class="landing-content">
+              <PortableTextContent value={landing.extra} openLinksInNewTab />
             </div>
           </div>
         )}
@@ -38,14 +46,7 @@ const landing = await getLanding(language);
             <h2 class="landing-section-title">Contact</h2>
             <nav class="landing-content landing-links">
               {landing.contact.map((link) => (
-                <a
-                  class="landing-link"
-                  href={link.url}
-                  target={link.target || "_self"}
-                  rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
-                >
-                  {link.title || link.url}
-                </a>
+                <a class="landing-link" href={link.url} target="_blank" rel="noopener noreferrer">{link.title || link.url}</a>
               ))}
             </nav>
           </div>

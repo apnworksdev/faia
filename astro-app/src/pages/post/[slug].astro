@@ -1,6 +1,6 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
-import { PortableText } from "astro-portabletext";
+import PortableTextContent from "../../components/portableText/PortableTextContent.astro";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
@@ -39,7 +39,7 @@ const post = await getPost(slug);
         {formatDate(post._createdAt)}
       </p>
       <div class="post__content">
-        <PortableText value={post.body} />
+        <PortableTextContent value={post.body} />
       </div>
     </div>
   </section>
