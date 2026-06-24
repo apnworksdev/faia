@@ -25,7 +25,8 @@ export default defineType({
     defineField({
       name: 'missionTitle',
       title: 'Mission (Title)',
-      type: 'string',
+      type: 'text',
+      rows: 3,
     }),
     defineField({
       name: 'mission',
@@ -35,7 +36,8 @@ export default defineType({
     defineField({
       name: 'methodsTitle',
       title: 'Methods (Title)',
-      type: 'string',
+      type: 'text',
+      rows: 3,
     }),
     defineField({
       name: 'methods',
@@ -45,7 +47,8 @@ export default defineType({
     defineField({
       name: 'extraTitle',
       title: 'Extra (Title)',
-      type: 'string',
+      type: 'text',
+      rows: 3,
     }),
     defineField({
       name: 'extra',

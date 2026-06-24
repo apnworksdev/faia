@@ -18,6 +18,7 @@ main {
 
 .landing-section-title {
   color: var(--color-gray);
+  white-space: pre-line;
 }
 
 .landing-content {
